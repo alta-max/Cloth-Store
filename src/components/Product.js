@@ -73,7 +73,7 @@ const Wrapper = styled.article`
   }
 
   footer p {
-    color: blueviolet;
+    color: orange;
     font-weight: 500;
     letter-spacing: var(--spacing);
   }

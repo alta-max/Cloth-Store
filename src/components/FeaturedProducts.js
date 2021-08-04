@@ -31,7 +31,10 @@ const FeaturedProducts = () => {
 }
 
 const Wrapper = styled.section`
-  background: #ffd8a8;
+  background: #fff;
+  .underline{
+    background-color: orange;
+  }
   .featured {
     margin: 4rem auto;
     display: grid;
@@ -45,7 +48,7 @@ const Wrapper = styled.section`
     width: 148px;
     margin: 0 auto;
     text-align: center;
-    background-color: blue;
+    background-color: #ff6500;
   }
   h2{
     color: darkblue;
