@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
-const ProductImages = () => {
-  return <h4>product images</h4>
+const ProductImages = ({ image }) => {
+  return <Wrapper>
+    <img src={image} alt="Main" />
+  </Wrapper>
 }
 
 const Wrapper = styled.section`
@@ -10,10 +12,11 @@ const Wrapper = styled.section`
     height: 600px;
   }
   img {
+    height: 28rem;
     width: 100%;
     display: block;
     border-radius: var(--radius);
-    object-fit: cover;
+    object-fit: contain;
   }
   .gallery {
     margin-top: 1rem;
