@@ -1,11 +1,58 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useFilterContext } from '../context/filter_context'
 import { getUniqueValues, formatPrice } from '../utils/helpers'
 import { FaCheck } from 'react-icons/fa'
+import axios from 'axios'
 
 const Filters = () => {
-  return <h4>filters</h4>
+  const [categories, setcategories] = useState([])
+  const { filters: { text, category }, price, min_price, max_price, updateFilters, clearFilters } = useFilterContext()
+
+  const getCategory = async () => {
+    const response = await axios.get('https://fakestoreapi.com/products/categories')
+    setcategories(response.data)
+  }
+  useEffect(() => {
+
+    getCategory()
+
+  }, [])
+  return <Wrapper>
+    <div className="content">
+      <form >
+        <div className="form-control">
+          <input type="text" name="text" value={text} placeholder="search" onChange={updateFilters} className="search-input" />
+        </div>
+        <div className='form-control'>
+          <h5>category</h5>
+          <div>
+            {categories.map((c, index) => {
+              return (
+                <button
+                  key={index}
+                  onClick={updateFilters}
+                  type='button'
+                  name='category'
+                  className={`${category === c.toLowerCase() ? 'active' : null
+                    }`}
+                >
+                  {c}
+                </button>
+              )
+            })}
+          </div>
+        </div>
+        <div className="form-control">
+          <h5>price</h5>
+          <p className="price">{price}</p>
+          <input type="range" name="price" onChange={updateFilters} min={min_price} max={max_price} value={price} />
+        </div>
+      </form>
+      <button type="button" className="clear-btn" onClick={clearFilters}>{" "}clear filters</button>
+    </div>
+  </Wrapper>
+
 }
 
 const Wrapper = styled.section`
