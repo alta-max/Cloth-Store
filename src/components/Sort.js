@@ -6,8 +6,8 @@ const Sort = () => {
   const { filtered_products: products, grid_view, setGridView, setListView, sort, updateSort } = useFilterContext()
   return <Wrapper>
     <div className="btn-container">
-      <button><BsFillGridFill /></button>
-      <button><BsList /></button>
+      <button onClick={setGridView}><BsFillGridFill /></button>
+      <button onClick={setListView} ><BsList /></button>
     </div>
     <p>{products.length} products found</p>
     <hr />

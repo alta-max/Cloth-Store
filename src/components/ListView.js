@@ -2,8 +2,21 @@ import React from 'react'
 import styled from 'styled-components'
 import { formatPrice } from '../utils/helpers'
 import { Link } from 'react-router-dom'
-const ListView = () => {
-  return <h4>list view</h4>
+const ListView = ({ products }) => {
+  return <Wrapper>
+    {products.map((product) => {
+      const { id, title, image, formatPrice, description, price } = product;
+      return <article key={id}>
+        <img src={image} alt={title} />
+        <div>
+          <h4>{title}</h4>
+          <h5 className="price">{price}</h5>
+          <p>{description.substring(0, 150)}...</p>
+          <Link to={`/products/${id}`} className="btn">Details</Link>
+        </div>
+      </article>
+    })}
+  </Wrapper>
 }
 
 const Wrapper = styled.section`
@@ -15,24 +28,30 @@ const Wrapper = styled.section`
     display: block;
     width: 300px;
     height: 200px;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: var(--radius);
     margin-bottom: 1rem;
   }
   h4 {
+    color: darkblue;
     margin-bottom: 0.5rem;
   }
   .price {
     color: var(--clr-primary-6);
     margin-bottom: 0.75rem;
+    color: #ff6500;
+
   }
   p {
+    color: darkblue;
     max-width: 45em;
     margin-bottom: 1rem;
   }
   .btn {
     font-size: 0.5rem;
     padding: 0.25rem 0.5rem;
+    background-color: #ff6500;
+    color: darkblue;
   }
   @media (min-width: 992px) {
     article {
