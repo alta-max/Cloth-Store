@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { formatPrice } from '../utils/helpers'
 import { FaSearch } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
@@ -34,11 +33,11 @@ const Wrapper = styled.article`
     background-color: #fff
   }
   .link {
+    background-color: orange;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: var(--clr-primary-5);
     display: flex;
     align-items: center;
     justify-content: center;

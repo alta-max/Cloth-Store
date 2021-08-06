@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useCartContext } from '../context/cart_context'
 import { Link } from 'react-router-dom'
-import { CartContent, PageHero } from '../components'
+import { CartContent } from '../components'
 
 const CartPage = () => {
   const { cart } = useCartContext();
@@ -23,11 +23,15 @@ const CartPage = () => {
 }
 
 const Wrapper = styled.main`
+  .btn{
+    background-color: rgb(255, 101, 0);
+  }
   .empty {
     text-align: center;
     h2 {
       margin-bottom: 1rem;
       text-transform: none;
+      color: darkblue;
     }
   }
 `
