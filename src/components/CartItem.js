@@ -4,8 +4,27 @@ import { formatPrice } from '../utils/helpers'
 import AmountButtons from './AmountButtons'
 import { FaTrash } from 'react-icons/fa'
 import { useCartContext } from '../context/cart_context'
-const CartItem = () => {
-  return <h4>cart item</h4>
+const CartItem = ({ id, name, image, price, amount }) => {
+  const { removeFromCart, toggleAmount } = useCartContext()
+  const increase = () => {
+    toggleAmount(id, "inc")
+  }
+  const decrease = () => {
+    toggleAmount(id, "dec")
+  }
+  return <Wrapper>
+    <div className="title">
+      <img src={image} alt={name} />
+      <div>
+        <h5 className="name">{name}</h5>
+        <h5 className="price-small">{price}</h5>
+      </div>
+    </div>
+    <h5 className="price">${price}</h5>
+    <AmountButtons amount={amount} increase={increase} decrease={decrease} />
+    <h5 className="subtotal">${price * amount}</h5>
+    <button type="btn" className="remove-btn" onClick={() => { removeFromCart(id) }}><FaTrash /></button>
+  </Wrapper>
 }
 
 const Wrapper = styled.article`
@@ -35,7 +54,7 @@ const Wrapper = styled.article`
     height: 100%;
     display: block;
     border-radius: var(--radius);
-    object-fit: cover;
+    object-fit: contain;
   }
   h5 {
     font-size: 0.75rem;
@@ -93,8 +112,8 @@ const Wrapper = styled.article`
     .subtotal {
       display: block;
       margin-bottom: 0;
-      color: var(--clr-grey-5);
-      font-weight: 400;
+      color: orange;
+      font-weight: bold;
       font-size: 1rem;
     }
     .price-small {
@@ -103,8 +122,8 @@ const Wrapper = styled.article`
     .price {
       display: block;
       font-size: 1rem;
-      color: var(--clr-primary-5);
-      font-weight: 400;
+      color: orange;
+      font-weight: bold;
     }
     .name {
       font-size: 0.85rem;
