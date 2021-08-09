@@ -38,6 +38,9 @@ const Wrapper = styled.section`
     color: darkblue;
     font-size: 1rem;
   }
+  .hero-btn {
+      background-color: #ff6500;
+    }
   @media (min-width: 992px) {
     height: calc(100vh - 5rem);
     grid-template-columns: 1fr 1fr;
